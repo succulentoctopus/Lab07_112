@@ -75,8 +75,6 @@ public class ProcessFiles {
 
     public static Point loadPointFromFile(String fileName){
 	//Your code here
-		//save points in form (double, double)
-		//or form double.double
 		double[] points = new double[2];
 		int counter = 0;
 		try {
@@ -88,7 +86,6 @@ public class ProcessFiles {
 					points[counter] = sc.nextDouble();
 					counter++;
 				}
-
 			}
 
 		}
@@ -104,15 +101,33 @@ public class ProcessFiles {
 
     public static void savePointToFile(Point p, String fileName){
 	//Your code here
-    }    
+		double x = p.x;
+		double y = p.y;
+
+		try {
+			File output = new File(fileName);
+
+			PrintWriter printer = new PrintWriter(output);
+
+			printer.write(" " + x);
+			printer.write(" " + y);
+			printer.close();
+		}
+
+		catch(FileNotFoundException e) {
+			System.err.println("File not found.");
+			System.err.println(e);
+		}
+    }
 
     public static void main(String args[]) {
-	Split("sample.txt", "words.txt", "numbers.txt");
-	CopyWithLineNumbers("sample.txt", "output.txt");
+	//Split("sample.txt", "words.txt", "numbers.txt");
+	//CopyWithLineNumbers("sample.txt", "output.txt");
 	
-	//Point p1 = new Point(1.0, 2.0);
-	//savePointToFile(p1, "point.txt");
-	Point p2 = loadPointFromFile("point.txt");
+	Point p1 = new Point(1.0, 2.0);
+	savePointToFile(p1, "point.txt");
+	//Point p2 = loadPointFromFile("point.txt");
+	//System.out.println(p2.x + " " + p2.y);
 	//System.out.println("The points are equal? " + p1.equals(p2));
     }
 }
